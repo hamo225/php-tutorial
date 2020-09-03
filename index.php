@@ -1,1 +1,4 @@
-First proper PHP page
+<?php
+
+
+echo "first echo of valid php";
