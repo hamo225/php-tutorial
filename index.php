@@ -289,3 +289,35 @@ if ($_POST) {
 
 
 <!-- Sending an Email witH PHP -->
+
+<!-- using the Mail function -->
+
+<?php
+echo "<br><br>";
+echo "<br><br>";
+echo "<br><br>";
+echo "<br><br>";
+
+$emailTo = "xyz@gmail.com";
+
+$subject = "Test PHP EMAIL";
+
+$body = "Mail function in PHP";
+
+$headers = "From: xyz@gmail.com";
+
+// this returns a 1 or a 0 if successfull
+
+
+
+if (mail($emailTo, $subject, $body, $headers)) {
+
+    echo "Email is off!";
+} else {
+    echo "email cannot be sent for some reason";
+}
+
+
+
+
+?>
