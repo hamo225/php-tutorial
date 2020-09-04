@@ -1,11 +1,154 @@
 <?php
 
 //declaring a variable in php
-
 $name = " <p> Adult Weather APP </p>";
 echo $name;
 echo "One of a kind $name";
 
+// contatinating variables
 $name2 = "<p> One of a kind </p>";
-
 echo $name . "" . $name2;
+
+// numbers in PHP
+$numberOfBooksWantToRead = 100;
+$membershipType = 4;
+$membershipLenth = $numberOfBooksWantToRead / $membershipType;
+echo $membershipLenth . " months to finish your read me list";
+
+// Booleans in PHP
+$membership = true;
+echo "<p>Do you want a new membership? " . "" . $membership . "</p>";
+
+// Storing variable names in variables
+$variableName = "name";
+echo $$variableName;
+
+// create a line break in PHP
+echo "<br><br>";
+
+// Arrays
+$genre = array("crime", "fiction", "non-fiction", "thriller", "biography", "sci-fi");
+// adding to an array
+$genre[] = "history";
+
+// cannot echo an array
+// how to print an array
+print_r($genre);
+
+// get some items in an array
+echo "<p> $genre[2] </p>";
+
+// another way to define an array is to create the values manually
+$typesOfBookShelves[0] = "Read";
+$typesOfBookShelves[1] = "Want to read";
+$typesOfBookShelves[2] = "Wish List";
+$typesOfBookShelves[8] = "Re read";
+$typesOfBookShelves["Username"] = "Anja12";
+print_r($typesOfBookShelves);
+
+// length of array
+echo "<br><br>";
+echo sizeof($typesOfBookShelves);
+
+// remove an item from an array
+echo "<br><br>";
+unset($genre["6"]);
+print_r($genre);
+echo "<br><br>";
+
+
+
+// if statements
+$username = "hamaoui261";
+
+if ($username == "hamaoui261") {
+    echo "Succesful";
+} else {
+    echo "Sign in Failed";
+}
+
+echo "<br><br>";
+
+$age = 17;
+
+if ($age >= 18) {
+    echo "Proceed";
+} else {
+    echo "You are too young";
+}
+
+echo "<br><br>";
+
+if ($username == "hamaoui261" && $age >= 18) {
+    echo "Succesful";
+} else {
+    echo "Sign in Failed";
+}
+
+echo "<br><br>";
+
+if ($username == "hamaoui261" || $age >= 18) {
+    echo "Succesful";
+} else {
+    echo "Sign in Failed";
+}
+
+echo "<br><br>";
+
+// for and for each loops
+// example gmail showing your emails
+
+
+for ($i = 0; $i < 11; $i++) {
+    echo $i . "<br>";
+}
+
+echo "<br><br>";
+
+// listing all even numbers from 0 to 30
+for ($i = 0; $i <= 30; $i = $i + 2) {
+    echo $i . "<br>";
+}
+
+echo "<br><br>";
+
+for ($i = 10; $i >= 0; $i--) {
+    echo $i . "<br>";
+}
+
+// looping through arrays - for loop
+echo "<br><br>";
+$genre = array("crime", "fiction", "non-fiction", "thriller", "biography", "sci-fi");
+for ($i = 0; $i < sizeof($genre); $i++) {
+    echo $genre[$i] . "<br>";
+}
+
+// foreach loop
+
+
+foreach ($genre as $key => $value) {
+
+
+    $genre[$key] = $value . "Do you like any others?";
+
+    echo "The Genre item you selected " . $key . " is" . $value . ". Do you like any others? " . "<br>";
+
+    // echo "<br><br>";
+
+    // echo $value . "<br>";
+}
+
+
+echo "<br><br>";
+
+$bookshelf = array("one", "two", "three", "four");
+
+$i = 0;
+
+while ($i < sizeof($bookshelf)) {
+
+
+    echo $bookshelf[$i] . "<br>";
+
+    $i++;
+}
