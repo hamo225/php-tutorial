@@ -209,3 +209,83 @@ if (is_numeric($_GET['numberInput']) && $_GET['numberInput'] > 0 && $_GET['numbe
 }
 
 ?>
+
+
+
+<!-- Post Variables -->
+<!-- are not encoded in the URL and are more secure -->
+
+
+<p>Testing POST variable:</p>
+<form action="" method="post">
+
+    <input type="text" name="number">
+
+    <input type="submit" value="Go">
+
+</form>
+
+<?php
+
+echo "<br><br>";
+
+print_r($_POST);
+echo "<br><br><br><br><br><br>";
+
+echo "<br><br>";
+echo "<br><br>";
+echo "<br><br>";
+echo "<br><br>";
+
+?>
+
+
+
+<!-- Creating a log in form. Comparing a user input name to variables in an array -->
+
+<!-- 
+    1. Create an array of names
+    2. Creat form
+    3. Take the input name in the form vis POST
+    4. Loop through the array 
+    5. if the input name matches return "successfull"
+
+-->
+
+
+<p>Enter your username:</p>
+<form action="" method="post">
+
+    <input type="text" name="userNameInput">
+
+    <input type="submit" value="Submit">
+
+</form>
+
+<?php
+
+// always check that the post is working with starting if ($_POST) {}
+if ($_POST) {
+
+    $userNames = array("apple", "banana", "orange");
+
+    $isknown = false;
+
+    foreach ($userNames as $value) {
+
+        if ($value == $_POST['userNameInput']) {
+            $isknown = true;
+        }
+    }
+    if ($isknown) {
+
+        echo "Sign in Succesful. Hello Mr " . $_POST['userNameInput'];
+    } else {
+
+        echo "Sorry we do not have a user by that name";
+    }
+}
+?>
+
+
+<!-- Sending an Email witH PHP -->
