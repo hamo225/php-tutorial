@@ -144,11 +144,68 @@ echo "<br><br>";
 $bookshelf = array("one", "two", "three", "four");
 
 $i = 0;
-
 while ($i < sizeof($bookshelf)) {
-
-
     echo $bookshelf[$i] . "<br>";
-
     $i++;
 }
+
+echo "<br><br>";
+
+// GET variables
+
+echo "The book " . $_GET['name'] . " is available";
+
+
+?>
+
+<p>What book are you looking for?</p>
+<form action="">
+
+    <input type="text" name="name">
+
+    <input type="submit" value="Go">
+
+</form>
+
+
+
+
+
+<p>Is it a prime number?</p>
+<form action="">
+
+    <input type="text" name="numberInput">
+
+    <input type="submit" value="Go">
+
+</form>
+
+<?php
+
+
+if (is_numeric($_GET['numberInput']) && $_GET['numberInput'] > 0 && $_GET['numberInput'] == round($_GET['numberInput'], 0)) {
+
+    $i = 2;
+
+    $isPrime = true;
+
+    while ($i < $_GET['numberInput']) {
+
+        if ($_GET['numberInput'] % $i == 0) {
+            // number is not prime
+            $isPrime = false;
+        }
+
+        $i++;
+    }
+
+    if ($isPrime) {
+        echo "<p>" . $i . " is a prime number";
+    } else {
+        echo "<p>" . $i . " is NOT a prime number";
+    }
+} else if ($_GET) {
+    echo "Please enter a positive whole number";
+}
+
+?>
