@@ -333,6 +333,10 @@ echo "<br><br>";
  -->
 
 
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -401,14 +405,16 @@ echo "<br><br>";
             // create an empty string
             var error = "";
 
+            if ($("#email").val() == "") {
+
+                error += "<p>Your email is required.</p>";
+            }
+
             // if statement - if the id subject inner value is an empty string then add to the error string above "the subject is required"
             if ($("#subject").val() == "") {
 
                 error += "<p>The subject field is required.</p>";
             }
-
-            // then here you are then adding the error variable above to the error id div above the form.
-            $("#error").html(error);
 
             if ($("#message").val() == "") {
 
@@ -416,14 +422,24 @@ echo "<br><br>";
             }
 
             // then here you are then adding the error variable above to the error id div above the form.
-            $("#error").html(error);
+            // If the error variable is not empty. If a user did not add the fields.
+            if (error != "") {
 
+                // then the div with id error. The inner html of it will add this string with the alert class of bootstrap
+                $("#error").html('<div class = "alert alert-danger"><p><strong>There are error(s) in your form:</strong></p>' + error + '</div>');
 
+            } else {
 
+                // once validation has happened. We want to submit the form if there are no errors.
+                // this will unbind the form from the submit function above as it has already been validated
+                // and will submit it as normal
+                // added the if statement to allow a green box to appear indicating email has been sent
+                if ($("form").unbind("submit").submit()) {
 
+                    $("#error").html('<div class = "alert alert-success"><p><strong>Email Sent</strong></p></div>');
 
-
-
+                };
+            }
 
 
         });
