@@ -11,7 +11,38 @@
 print_r($_POST);
 
 
+// set up PHP server side validation
+if ($_POST) {
 
+    $error = "";
+
+    if (!$_POST['email']) {
+        $error .= "An email address is required.<br>";
+    } else {
+        // check if e-mail address is well-formed
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $error .= "Invalid email format";
+        }
+    }
+
+    if (!$_POST['content']) {
+        $error .= "Content field is required.<br>";
+    }
+
+
+    if (!$_POST['subject']) {
+        $error .= "Subject is required.<br>";
+    }
+
+    if ($error != "") {
+
+        // then the div with id error. The inner html of it will add this string with the alert class of bootstrap
+        $error = '<div class = "alert alert-danger"><p><strong>There are error(s) in your form:</strong></p>' . $error . '</div>';
+    } else {
+
+        $error = '<div class = "alert alert-success"><p><strong>Email Sent</strong></p></div>';
+    }
+}
 ?>
 
 
@@ -40,7 +71,7 @@ print_r($_POST);
     </div>
     <div class="container mt-5">
 
-        <form action="" method="post">
+        <form method="post">
             <div class="form-group">
                 <label for="email">Email Address</label>
                 <input type="text" name="email" id="email" class="form-control" placeholder="Your email address" aria-describedby="helpId" require>
