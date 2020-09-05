@@ -325,7 +325,8 @@ echo "<br><br>";
 
 
 <!-- 
-1. Contact form
+1. Create Contact form
+    a. Labels, Inputs, required, link for and name and ID
 2. JS/Jquery Validation
 3. PHP server side validation
 4. Check that email is sent
@@ -356,24 +357,24 @@ echo "<br><br>";
         <form action="" method="POST">
 
             <div class="form-group">
-                <label for="">Email Address</label>
-                <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId" require>
+                <label for="email">Email Address</label>
+                <input type="text" name="email" id="email" class="form-control" placeholder="Your email address" aria-describedby="helpId" require>
                 <!-- <small id="helpId" class="text-muted">Help text</small> -->
             </div>
 
             <div class="form-group">
-                <label for="">Subject</label>
-                <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId" require>
+                <label for="subject">Subject</label>
+                <input type="text" name="subject" id="subject" class="form-control" placeholder="Your subject" aria-describedby="helpId" require>
                 <!-- <small id="helpId" class="text-muted">Help text</small> -->
             </div>
 
             <div class="form-group">
-                <label for="">Message:</label>
-                <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId" require>
+                <label for="message">Message:</label>
+                <textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Your message"></textarea>
                 <!-- <small id="helpId" class="text-muted">Help text</small> -->
             </div>
 
-            <button type="submit" class="btn btn-primary">SEND</button>
+            <button type="submit" class="btn btn-primary" id="submit">SEND</button>
         </form>
 
 
@@ -383,6 +384,19 @@ echo "<br><br>";
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+    <script>
+        // have to stop the form from submitting when you press the submit button as have to give time for js validation to take place then submit
+        // this prevents the submit button on the form
+        $("form").submit(function(e) {
+            e.preventDefault();
+        });
+    </script>
+
+
+
+
 </body>
 
 </html>
