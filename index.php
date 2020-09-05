@@ -351,7 +351,10 @@ echo "<br><br>";
         <h2>Get in Touch</h2>
     </header>
 
+    <div id="error">
 
+
+    </div>
     <div class="container mt-5">
 
         <form action="" method="POST">
@@ -391,6 +394,38 @@ echo "<br><br>";
         // this prevents the submit button on the form
         $("form").submit(function(e) {
             e.preventDefault();
+
+
+            //    Js/Jq validation
+
+            // create an empty string
+            var error = "";
+
+            // if statement - if the id subject inner value is an empty string then add to the error string above "the subject is required"
+            if ($("#subject").val() == "") {
+
+                error += "<p>The subject field is required.</p>";
+            }
+
+            // then here you are then adding the error variable above to the error id div above the form.
+            $("#error").html(error);
+
+            if ($("#message").val() == "") {
+
+                error += "<p>The message field is required.</p>";
+            }
+
+            // then here you are then adding the error variable above to the error id div above the form.
+            $("#error").html(error);
+
+
+
+
+
+
+
+
+
         });
     </script>
 
