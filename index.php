@@ -8,29 +8,39 @@
 
 <?php
 
-print_r($_POST);
+// use to test connection of post form
+// print_r($_POST);
 
 
 // set up PHP server side validation
+
+// error set to empty string
+$error = "";
+
+// check if any post variables
 if ($_POST) {
 
-    $error = "";
-
-    if (!$_POST['email']) {
+    // check if email variable is empty
+    if (!$_POST["email"]) {
+        // if true and emppty then append to error variable
         $error .= "An email address is required.<br>";
-    } else {
-        // check if e-mail address is well-formed
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $error .= "Invalid email format";
-        }
     }
 
-    if (!$_POST['content']) {
-        $error .= "Content field is required.<br>";
+    // check if e-mail address is well-formed. If not valid then append the error
+    if ($_POST["email"] && filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+        $error .= "Invalid email format.<br>";
     }
 
 
-    if (!$_POST['subject']) {
+    // check if content variable is empty
+    if (!$_POST["message"]) {
+        // if true and emppty then append to error variable
+        $error .= "Message field is required.<br>";
+    }
+
+    // check if subject variable is empty
+    if (!$_POST["subject"]) {
+        // if true and emppty then append to error variable
         $error .= "Subject is required.<br>";
     }
 
@@ -40,9 +50,10 @@ if ($_POST) {
         $error = '<div class = "alert alert-danger"><p><strong>There are error(s) in your form:</strong></p>' . $error . '</div>';
     } else {
 
-        $error = '<div class = "alert alert-success"><p><strong>Email Sent</strong></p></div>';
+        // $error = '<div class = "alert alert-success"><p><strong>Email Sent</strong></p></div>';
     }
 }
+
 ?>
 
 
@@ -66,8 +77,7 @@ if ($_POST) {
     </header>
 
     <div id="error">
-
-
+        <? echo $error; ?>
     </div>
     <div class="container mt-5">
 
@@ -107,7 +117,6 @@ if ($_POST) {
         // this prevents the submit button on the form
         $("form").submit(function(e) {
             e.preventDefault();
-
 
             //    Js/Jq validation
 
