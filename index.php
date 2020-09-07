@@ -16,6 +16,7 @@
 
 // error set to empty string
 $error = "";
+$successMessage = "";
 
 // check if any post variables
 if ($_POST) {
@@ -27,7 +28,7 @@ if ($_POST) {
     }
 
     // check if e-mail address is well-formed. If not valid then append the error
-    if ($_POST["email"] && filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+    if ($_POST["email"] && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) === false) {
         $error .= "Invalid email format.<br>";
     }
 
@@ -50,7 +51,20 @@ if ($_POST) {
         $error = '<div class = "alert alert-danger"><p><strong>There are error(s) in your form:</strong></p>' . $error . '</div>';
     } else {
 
-        // $error = '<div class = "alert alert-success"><p><strong>Email Sent</strong></p></div>';
+        $emailTo = "";
+
+        $subject = $_POST("subject");
+
+        $content = $_POST("message");
+
+        $headers = "From " . $_POST("email");
+
+        if (mail($emailTo, $subject, $content, $headers)) {
+
+            $successMessage = '<div class = "alert alert-success"><p><strong>Email Sent</strong></p></div>';
+        } else {
+            $error = '<div class = "alert alert-danger"><p><strong>Email could not be sent. Please try again later.</strong></p>' . $error . '</div>';
+        }
     }
 }
 
@@ -76,8 +90,8 @@ if ($_POST) {
         <h2>Get in Touch</h2>
     </header>
 
-    <div id="error">
-        <? echo $error; ?>
+    <div id="error" id="successMessage">
+        <? echo $error.$successMessage; ?>
     </div>
     <div class="container mt-5">
 
@@ -116,7 +130,6 @@ if ($_POST) {
         // have to stop the form from submitting when you press the submit button as have to give time for js validation to take place then submit
         // this prevents the submit button on the form
         $("form").submit(function(e) {
-            e.preventDefault();
 
             //    Js/Jq validation
 
@@ -146,17 +159,13 @@ if ($_POST) {
                 // then the div with id error. The inner html of it will add this string with the alert class of bootstrap
                 $("#error").html('<div class = "alert alert-danger"><p><strong>There are error(s) in your form:</strong></p>' + error + '</div>');
 
+                return false;
+
             } else {
 
-                // once validation has happened. We want to submit the form if there are no errors.
-                // this will unbind the form from the submit function above as it has already been validated
-                // and will submit it as normal
-                // added the if statement to allow a green box to appear indicating email has been sent
-                if ($("form").unbind("submit").submit()) {
+                $("#successMessage").html('<div class = "alert alert-success"><p><strong>Email Sent</strong></p></div>');
 
-                    $("#error").html('<div class = "alert alert-success"><p><strong>Email Sent</strong></p></div>');
-
-                };
+                return true;
             }
 
 
