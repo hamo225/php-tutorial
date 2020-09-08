@@ -51,7 +51,7 @@ if ($_POST) {
         $error = '<div class = "alert alert-danger"><p><strong>There are error(s) in your form:</strong></p>' . $error . '</div>';
     } else {
 
-        $emailTo = "";
+        $emailTo = "tarekipad@gmail.com";
 
         $subject = $_POST("subject");
 
